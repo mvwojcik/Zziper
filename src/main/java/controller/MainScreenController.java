@@ -3,65 +3,80 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
-
+import model.Zziper;
+import java.awt.*;
 import java.io.File;
+import java.util.List;
 
 public class MainScreenController {
+
+    Zziper zziper;
+
+String outputPath;
 
     @FXML
     private Button filePicker;
 
     @FXML
-    private TextField filePath;
-
-    @FXML
     private TextField resultFilePath;
 
     @FXML
+    private ListView listView;
+
+    @FXML
+    public void initialize()
+    {
+        zziper = new Zziper();
+        this.resultFilePath.setText(System.getProperty("user.dir")+"\\zippedfiles.zip");
+        outputPath=null;
+    }
+    @FXML
     void openFilePicker(ActionEvent event) {
-openFileChooser();
+this.listView.getItems().add(Files.openFileChooser(this.listView));
     }
 
     @FXML
     void zzipIt(ActionEvent event) {
-
-    }
-
-
-    public void openFileChooser() {
-        FileChooser fc = new FileChooser();  //Inicjalizacja fc
-
-
-        File selectedFile = fc.showOpenDialog(null); //przypisz wybrany w fc plik do selectedFile
-        fileIsNull(selectedFile,fc);
-    }
-    private void fileIsNull(File selectedFile,FileChooser fc) {
-     /*   if (selectedFile != null) {
-            listview.getItems().add(selectedFile.getAbsolutePath()); //dodaje wybrany plik do listyitemów
-            this.extension = fc.getSelectedExtensionFilter().getDescription();
-
-        } else {
-            System.out.println("file is not valid");
+        List<String> list = this.listView.getItems();
+        this.zziper.getFiles(list);
+        this.zziper.method(this.resultFilePath.getText());
+        FileChooser directoryChooser = new FileChooser();
+        if (outputPath==null) {
+            directoryChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
+            directoryChooser.showOpenDialog(null);
         }
-        */
+        else
+        {
+            directoryChooser.setInitialDirectory(new File(this.outputPath));
+            directoryChooser.showOpenDialog(null);
+
+        }
+        }
+
+    @FXML
+    void removeAll(ActionEvent event) {
+this.listView.getItems().remove(0,this.listView.getItems().size());
+this.zziper.reset();
     }
 
-    private String getItem() {
-       /* String absolutePath = (String) listview.getSelectionModel().getSelectedItem();
-        if (absolutePath == null) {
-            if(listview.getItems().get(0) == null)
-            {
-                throw new NullPointerException(" U have to choose item");
-            }
-            absolutePath = (String) listview.getItems().get(0);
-        }
-        System.out.println(absolutePath);
-        return absolutePath;
-    */
-       return "";
+    @FXML
+    void removeById(ActionEvent event) {
+this.listView.getItems().remove(this.listView.getSelectionModel().getSelectedIndex());
     }
+
+    @FXML
+    public void chooseDir()
+    {
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        File file = directoryChooser.showDialog(null);
+        this.outputPath = file.getAbsolutePath();
+        this.resultFilePath.setText(outputPath+"\\zzipowany.zip");
+    }
+
 
 
 }
