@@ -3,22 +3,20 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="345.0" prefWidth="658.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainScreenController">
+<AnchorPane prefHeight="345.0" prefWidth="658.0" stylesheets="@../stylesheets/Stylesheet1.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainScreenController">
    <children>
-      <Label layoutX="169.0" layoutY="14.0" prefHeight="18.0" prefWidth="72.0" text="ZIPPER" />
+      <Label alignment="CENTER" layoutY="2.0" prefHeight="37.0" prefWidth="658.0" text="ZIPPER" />
       <Button fx:id="filePicker" layoutX="22.0" layoutY="102.0" mnemonicParsing="false" onAction="#openFilePicker" text="Wybierz plik" />
-      <TextField fx:id="resultFilePath" layoutX="191.0" layoutY="265.0" prefHeight="26.0" prefWidth="173.0" />
-      <Separator layoutY="262.0" prefHeight="2.0" prefWidth="434.0" />
-      <Button layoutX="190.0" layoutY="304.0" mnemonicParsing="false" onAction="#zzipIt" prefHeight="26.0" prefWidth="174.0" text="Zzipuj" />
-      <ListView fx:id="listView" layoutX="119.0" layoutY="60.0" prefHeight="154.0" prefWidth="493.0" />
-      <Button layoutX="129.0" layoutY="224.0" mnemonicParsing="false" onAction="#removeById" text="Usun wybrany" />
-      <Button layoutX="269.0" layoutY="224.0" mnemonicParsing="false" onAction="#removeAll" text="Usun wszystkie" />
-      <Label layoutX="227.0" layoutY="32.0" text="Wybrane pliki" />
-      <Label layoutX="63.0" layoutY="270.0" text="Nazwa zipa:" />
-      <Button layoutX="69.0" layoutY="305.0" mnemonicParsing="false" onAction="#chooseDir" text="Gdzie" />
+      <TextField fx:id="resultFilePath" layoutX="306.0" layoutY="267.0" prefHeight="26.0" prefWidth="173.0" />
+      <Button layoutX="306.0" layoutY="305.0" mnemonicParsing="false" onAction="#zzipIt" prefHeight="26.0" prefWidth="174.0" text="Zzipuj" />
+      <ListView fx:id="listView" layoutX="147.0" layoutY="60.0" prefHeight="154.0" prefWidth="465.0" />
+      <Button layoutX="156.0" layoutY="224.0" mnemonicParsing="false" onAction="#removeById" text="Usun wybrany" />
+      <Button layoutX="432.0" layoutY="224.0" mnemonicParsing="false" onAction="#removeAll" text="Usun wszystkie" />
+      <Label alignment="CENTER" layoutX="-1.0" layoutY="32.0" prefHeight="25.0" prefWidth="658.0" text="Wybrane pliki" />
+      <Label layoutX="202.0" layoutY="270.0" text="Nazwa zipa:" />
+      <Button layoutX="171.0" layoutY="305.0" mnemonicParsing="false" onAction="#chooseDir" text="Gdzie" />
    </children>
 </AnchorPane>
